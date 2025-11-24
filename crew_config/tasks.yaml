@@ -1,0 +1,34 @@
+intel_sources:
+  - source: threat_forum
+    payload: |
+      High-velocity swaps via JUP have been traced to address 7seQdrnSYt6ut7e4kJu7b3gYzX9VwJt7tghYxzVaxk9h with assets bridging to 9q8fWQGJoJYxTaobQif45gUhfqX9VT1q6drncb86YLse.
+      Additional mirror wallet: CsmuE8ZXynbq9GDdUQwCFMnpWFCCQ56YW9CJZyi4JdHc.
+  - source: private_tip
+    payload: |
+      Address 9q8fWQGJoJYxTaobQif45gUhfqX9VT1q6drncb86YLse coordinates liquidity across cAMM pools and pushes volume through program 5hA7gCu.
+      Expect further dispersal within 2 slots.
+
+onchain_records:
+  - signature: tx1
+    slot: 100
+    signer: 7seQdrnSYt6ut7e4kJu7b3gYzX9VwJt7tghYxzVaxk9h
+    accounts: [9q8fWQGJoJYxTaobQif45gUhfqX9VT1q6drncb86YLse, CounterpartyA]
+    programs: [5hA7gCu]
+    lamports: 1500000000
+    fee: 5000
+  - signature: tx2
+    slot: 101
+    signer: 9q8fWQGJoJYxTaobQif45gUhfqX9VT1q6drncb86YLse
+    accounts: [CsmuE8ZXynbq9GDdUQwCFMnpWFCCQ56YW9CJZyi4JdHc, CounterpartyB]
+    programs: [5hA7gCu]
+    lamports: 900000000
+    fee: 5000
+  - signature: tx3
+    slot: 105
+    signer: CounterpartyA
+    accounts: [7seQdrnSYt6ut7e4kJu7b3gYzX9VwJt7tghYxzVaxk9h]
+    programs: [Sys111111111111111111111111111111111111111]
+    lamports: 2500000000
+    fee: 5000
+report:
+  lamport_threshold: 1000000000
