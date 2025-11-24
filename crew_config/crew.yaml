@@ -1,0 +1,11 @@
+name: solana-forensic-system
+version: 0.1.0
+agents:
+  - id: intel
+    class: agents.intel_agent.IntelAgent
+  - id: onchain
+    class: agents.onchain_agent.OnChainAgent
+  - id: correlation
+    class: agents.correlation_agent.CorrelationAgent
+  - id: report
+    class: agents.report_agent.ReportAgent
