@@ -46,7 +46,7 @@ class DexSniperAgent:
                     slippage_bps=self.pair_config.slippage_bps,
                 )
             )
-        except RequestException:
+        except (RequestException, ValueError):
             pass
 
         orca_params = self.orca.quote_params(
@@ -66,7 +66,7 @@ class DexSniperAgent:
                     slippage_bps=self.pair_config.slippage_bps,
                 )
             )
-        except RequestException:
+        except (RequestException, ValueError):
             pass
 
         return quotes

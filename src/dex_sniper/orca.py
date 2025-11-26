@@ -1,4 +1,4 @@
-from decimal import Decimal
+from decimal import Decimal, InvalidOperation
 from typing import Dict
 
 from .models import Quote
@@ -18,11 +18,20 @@ class OrcaClient:
         }
 
     def parse_quote(self, response: Dict[str, object], in_mint: str, out_mint: str, amount: int, slippage_bps: int) -> Quote:
-        quoted_amount = response["quotedAmount"]
-        if not isinstance(quoted_amount, str):
+        quoted_amount = response.get("quotedAmount")
+        if quoted_amount is None:
             raise ValueError("Orca quote response missing quotedAmount")
-        out_amount = int(quoted_amount)
-        price = Decimal(out_amount) / Decimal(amount)
+
+        try:
+            out_amount = int(quoted_amount)
+        except (TypeError, ValueError):
+            raise ValueError("Orca quotedAmount is not parseable as int") from None
+
+        try:
+            price = Decimal(out_amount) / Decimal(amount)
+        except (InvalidOperation, ZeroDivisionError):
+            raise ValueError("Orca price computation failed") from None
+
         pool_addr = response.get("poolAddress", "")
         context = {"pool": pool_addr, "tick": str(response.get("tickCurrentIndex", ""))}
         return Quote(
