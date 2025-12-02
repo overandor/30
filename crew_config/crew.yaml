@@ -1,0 +1,7 @@
+name: solana-forensic-system
+rpc_endpoint: https://api.mainnet-beta.solana.com
+commitment: confirmed
+similarity_threshold: 0.55
+intel_sources:
+  - https://status.solana.com
+  - https://blog.solana.com

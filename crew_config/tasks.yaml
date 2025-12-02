@@ -1,0 +1,8 @@
+- id: intel-collection
+  description: Crawl intel sources and extract Solana indicators.
+- id: onchain-capture
+  description: Fetch onchain activity for discovered addresses.
+- id: correlation
+  description: Cluster flows and propagate suspicion signals.
+- id: reporting
+  description: Emit deterministic text report for operator review.
